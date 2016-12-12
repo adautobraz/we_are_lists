@@ -1,0 +1,7 @@
+<%= select "Disciplina", "Disciplina", @disciplinas.each_with_index.map {|name, index| [name,index]}, class:'form-control '  %>
+
+<%= form_tag(list_path, method: "put") do %>
+  <%= label_tag(:q, "Inserir ISBN do livro:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Adicionar") %>
+<% end %>

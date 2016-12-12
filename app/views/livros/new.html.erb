@@ -1,0 +1,71 @@
+<% if @livro.errors.any? %>
+    <ul>
+        <% @livro.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+ <div class="form-log-in-with-email">
+
+        <div class="form-white-background">
+            <%= form_for @livro do |f| %>
+            
+            <div class="form-title-row">
+                <h1>Informações do livro</h1>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Nome da obra e volume</span>
+                    <%= f.text_field :obra  %>
+                    <!--<input type="email" name="email">-->
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Disciplina</span>
+                    <%= f.text_field :disciplina  %>
+                    <!--<input type="email" name="email">-->
+                </label>
+            </div>
+          
+            <div class="form-row">
+                <label>
+                    <span>Autor(es)</span>
+                    <%= f.text_field :autor  %>
+                    <!--<input type="email" name="email">-->
+                </label>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Edição</span>
+                    <%= f.text_field :edicao  %>
+                    <!--<input type="email" name="email">-->
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Editora</span>
+                    <%= f.text_field :selo  %>
+                    <!--<input type="email" name="email">-->
+                </label>
+            </div>
+            
+            <%= hidden_field_tag "livro[escola_id]", "#{@escola.id}" %>
+
+            <%= hidden_field_tag "livro[list_id]", "#{@list.id}" %>
+
+
+            <div class="form-row">
+                <button type="submit">Confirmar dados</button>
+            </div>
+<% end %>
+
+
+        </div>
+
+    </div>

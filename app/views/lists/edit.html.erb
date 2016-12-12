@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="col-lg-6">
+<div class="form-log-in-with-email">
+ <div class="form-white-background">
+    <%= form_tag(list_path, method: "put") do %>
+      <div class="form-title-row">
+          <h5>Inserir ISBN do Livro</h5>
+      </div>
+      <div class="form-row text-center centered">
+      <label>
+          <span><%= text_field_tag(:isbn) %></span>
+          <!--<input type="email" name="email">-->
+      </label>
+      </div>
+      <div class="form-row">
+        <%= submit_tag("Adicionar", class:"btn btn-secondary centered") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+

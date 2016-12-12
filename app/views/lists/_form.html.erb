@@ -1,0 +1,20 @@
+<%= form_for @list.livros do |f| %>
+ <tr>
+      <td class="top_row"></td>
+      <td class="top_row"><bold><%= f.obra %></bold></td>
+      <td class="top_row"></td>
+    </tr>
+    <tr>
+      <td class="middle_row"><%= f.disciplina %></td>
+      <td class="middle_row"><%= f.autor %></td>
+      <td class="middle_row">
+        <i class="material-icons button edit">edit</i>
+        <i class="material-icons button delete">delete</i>
+      </td>
+    </tr>
+    <tr>
+      <td class="bottom_row"></td>
+      <td class="bottom_row"><%= "#{f.selo}" + "," + "#{f.volume_edicao}" + "ª edição"  %>, Ano</td>
+      <td class="bottom_row"></td>
+    </tr>
+<% end %>

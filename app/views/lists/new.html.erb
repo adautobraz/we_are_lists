@@ -1,0 +1,38 @@
+<% if @list.errors.any? %>
+    <ul>
+        <% @list.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<div class="col-lg-12">
+    <div class="container">
+        <div class="col-lg-2"><p></p></div>
+         <div class="form-log-in-with-email col-lg-8">
+            <div class="form-white-background text-center">
+                <%= form_for @list do |f| %>
+                    <div class="form-title-row">
+                        <h1>Criar Lista</h1>
+                    </div>
+                    <div class=" form_group row">
+                        <%= f.label "Segmento", class:"col-xs-2 col-form-label"%>
+                        <div class="col-xs-10">
+                            <%= f.select(:segmento, ['Educação Infantil','Ensino Fundamental 1', 'Ensino Fundamental 2', 'Ensino Médio'], {}, { :class => "form-control" }) %>
+                        </div>
+                    </div>
+                    
+                    <p></p>
+                    <p></p>
+                
+                    <div class="form_group row">
+                        <%= link_to 'Criar lista', escola_lists_path(f, escola_id: @escola.id), :method => :post, :class =>' btn btn-secondary btn-lg'   %>
+                        <!--<button type="submit">Confirmar dados</button>-->
+                    </div>
+                
+                <% end %>
+                </div>
+            </div>
+            <div class="col-lg-2"><p></p></div>
+        </div>
+</div>

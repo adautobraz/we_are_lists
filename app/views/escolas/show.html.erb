@@ -1,0 +1,43 @@
+<div class="jumbotron">
+    <div class="container">
+      <h2><%= @escola.nome %></h2>
+      <h4><%= "#{@escola.endereco}" + ", " + "#{@escola.bairro}"  + " - " + "#{@escola.municipio}" +  + "/" + "#{@escola.uf}"  %></h4>
+      <h5><%= "#{@escola.telefone1}"%></h5>
+      <h5><%= "#{@escola.site}"%></h5>
+
+    </div>
+</div>
+
+<div class="container">
+  <div clas= "col-md-8 col-md-offset-2">
+    <% if @escola.lists.any? %>
+    <div class="row row-centered">
+  <div clas= "col-md-8 col-md-offset-2">
+
+        <% @escola.lists.each do |f| %>
+        <div clas= "col-md-6">
+          <h3><%= "Lista" + "#{f.segmento}" %></h3>
+        </div>
+        <div clas= "col-md-2">
+          <h5><small><%= link_to 'editar', escola_list_path(escola_id: @escola.id) %></small></h5>
+        </div>
+        <% end %>
+    </div>
+    <% end %>
+    <div class="row"><p></p></div>
+    <div class="row"><p></p></div>
+
+    <div class="row">
+        <div class="text-center">
+            <%= link_to 'Criar lista', new_escola_list_path(escola_id: @escola.id), :class =>' btn btn-secondary btn-lg'   %>
+        </div>
+    </div>
+        
+    
+    
+  </div>
+  
+</div>
+ 
+
+    <!--<button type="submit">Confirmar dados</button>-->

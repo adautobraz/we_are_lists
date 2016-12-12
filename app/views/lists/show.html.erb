@@ -1,0 +1,56 @@
+<body>
+  <div class="jumbotron">
+      <div class="container">
+        <h1>Lista de livros</h1>
+        <h5><%= "#{@list.escola.nome}"%></h5>
+      </div>
+  </div>
+  
+  <div class="container ">
+    <div class="row row-centered">
+      <div class="col-md-10 col-md-offset-4">
+        <% if @list.livros.any? %>
+        <table class="text-center">
+          <thead>
+            <tr>
+              <th colspan="1">Disciplina</th>
+              <th colspan="3">Título/Autor/Editora</th>
+            </tr>
+          </thead>
+            <% @list.livros.each do |f| %>
+              <tbody>
+                <tr>
+                        <td class="top_row"></td>
+                        <td class="top_row"><bold><%= "#{f.obra}".split.map(&:capitalize)*' ' %></bold></td>
+                        <td class="top_row"></td>
+                    </tr>
+                    <tr>
+                        <td class="middle_row"><%= "#{f.disciplina}".split.map(&:capitalize)*' ' %></td>
+                        <td class="middle_row"><%= "#{f.autor}".sub('"', '').split.map(&:capitalize)*' ' %></td>
+                        <td class="middle_row">
+                          <i class="material-icons button delete"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bottom_row"></td>
+                        <td class="bottom_row"><%= "#{f.selo}".capitalize + ", " + "#{f.volume_serie}" + ", " + "#{f.edicao}" + "ª edição"  %></td>
+                        <td class="bottom_row"></td>
+                    </tr>
+              </tbody>
+            <% end %>
+        </table>
+        <% end %>
+        <div class="form-group"> 
+          <%= button_to 'Adicionar obra da Somos', edit_list_path, method: :get, class: ' btn btn-secondary btn-lg' %>
+        </div>
+        <div class="form-group"> 
+          <%= button_to 'Adicionar outras obras', new_escola_list_livro_path(escola_id: @list.escola, list_id: @list), method: :get, class: ' btn btn-secondary btn-lg' %>
+        </div>
+        <div class="form-group">
+          <%= button_to 'Importar lista', edit_list_path, method: :get, class: ' btn btn-secondary btn-lg' %>
+        </div>
+ 
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,83 @@
+<% if @escola.errors.any? %>
+    <ul>
+        <% @escola.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+ <div class="form-log-in-with-email">
+
+        <div class="form-white-background">
+            <%= form_for @escola do |f| %>
+                <div class="form-title-row">
+                    <h1>Informações da Escola</h1>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Nome</span>
+                        <%= f.text_field :nome %>
+                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+                
+                  <div class="form-row">
+                    <label>
+                        <span>CEP</span>
+                        <input type="email" name="email">
+                    </label>
+                </div>
+                
+                
+                <div class="form-row">
+                    <label>
+                        <span>Endereço</span>
+                        <input type="email" name="email">
+                    </label>
+                </div>
+                
+                   <div class="form-row">
+                    <label>
+                        <span>Número</span>
+                        <input type="email" name="email">
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Complemento</span>
+                        <input type="email" name="email">
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Bairro</span>
+                        <input type="email" name="email">
+                    </label>
+                </div>
+    
+                <div class="form-row">
+                    <label>
+                        <span>Telefone</span>
+                        <input type="email" name="email">
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Site</span>
+                        <input type="email" name="email">
+                    </label>
+                </div>
+    
+                <div class="form-row">
+                    <button type="submit">Confirmar dados</button>
+                </div>
+            <% end %>
+
+
+        </div>
+
+    </div>

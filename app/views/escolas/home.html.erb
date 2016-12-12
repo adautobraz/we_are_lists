@@ -1,0 +1,27 @@
+<%= form_tag  escolas_fetch_path , class: 'form-login',  method: :post do %>
+    
+        <div class="form-log-in-with-email">
+    
+            <div class="form-white-background">
+    
+                <div class="form-title-row">
+                    <h1>Gerador de Listas</h1></br></br>
+                    <h5>Para começar, insira número MEC da Escola</h5>
+                </div>
+    
+                <div class="form-row">
+                    <label>
+                        <span>Número MEC</span>
+                        <input name="mec">
+                    </label>
+                </div>
+    
+                <div class="form-row">
+                    <%= button_to 'Confirmar Dados', escolas_fetch_path, method: :post%>
+                    <!--<button type="submit">Confirmar dados</button>-->
+                </div>
+    
+            </div>
+    
+        </div>
+<% end %> 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+
+  <% flash.each do |name,msg| %>
+    <ul>
+      <div class="alert alert-info">
+        <li><strong>Aviso: </strong><%= msg %></li>
+        </div>
+    </ul>
+  <% end %>
+<%= yield %>
+
+</body>
+</html>
