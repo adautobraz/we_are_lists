@@ -8,7 +8,7 @@
   
   <div class="container ">
     <div class="row row-centered">
-      <div class="col-md-10 col-md-offset-4">
+      <div class="col-md-10">
         <% if @list.livros.any? %>
         <table class="text-center">
           <thead>
@@ -40,14 +40,15 @@
             <% end %>
         </table>
         <% end %>
+        
         <div class="form-group"> 
-          <%= button_to 'Adicionar obra da Somos', edit_list_path, method: :get, class: ' btn btn-secondary btn-lg' %>
+          <%= button_to 'Adicionar obra da Somos', edit_list_path, method: :get, class: ' btn btn-danger' %>
         </div>
         <div class="form-group"> 
-          <%= button_to 'Adicionar outras obras', new_escola_list_livro_path(escola_id: @list.escola, list_id: @list), method: :get, class: ' btn btn-secondary btn-lg' %>
+          <%= button_to 'Adicionar outras obras', new_escola_list_livro_path(escola_id: @list.escola, list_id: @list), method: :get, class: ' btn btn-danger' %>
         </div>
         <div class="form-group">
-          <%= button_to 'Importar lista', edit_list_path, method: :get, class: ' btn btn-secondary btn-lg' %>
+          <%= button_to 'Exportar lista', escola_list_path(escola_id: @list.escola, list_id: @list, :format => :pdf), method: :get, class: ' btn btn-danger' %>
         </div>
  
       </div>

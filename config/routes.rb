@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   
   post 'escolas/fetch'
   post "lists/new"
+  get  'escolas/:escola_id/lists/:id/pdf' => 'lists#mostrar', as: :mostrar
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

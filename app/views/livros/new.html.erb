@@ -5,67 +5,78 @@
         <% end %>
     </ul>
 <% end %>
-
- <div class="form-log-in-with-email">
-
-        <div class="form-white-background">
-            <%= form_for @livro do |f| %>
+<div class="col-lg-12">
+    <div class="container">
+        <div class="col-lg-2"><p></p></div>
+         <div class="form-log-in-with-email col-lg-8">
+                <div class="form-white-background">
+                    <%= form_for @livro do |f| %>
+                        <div class="form-title-row">
+                            <h1>Informações do livro</h1>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>
+                                <span>Obra</span>
+                                <%= f.text_field :obra, class:'form-input'  %>
+                                <!--<input type="email" name="email">-->
+                            </label>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>
+                                <span>Volume</span>
+                                <%= f.text_field :volume_serie, class:'form-input'  %>
+                                <!--<input type="email" name="email">-->
+                            </label>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>
+                                <span>Disciplina</span>
+                                <%= f.text_field :disciplina, class:'form-input'   %>
+                                <!--<input type="email" name="email">-->
+                            </label>
+                        </div>
+                      
+                        <div class="form-row">
+                            <label>
+                                <span>Autor(es)</span>
+                                <%= f.text_field :autor, class:'form-input'   %>
+                                <!--<input type="email" name="email">-->
+                            </label>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>
+                                <span>Edição</span>
+                                <%= f.text_field :edicao, class:'form-input'   %>
+                                <!--<input type="email" name="email">-->
+                            </label>
+                        </div>
             
-            <div class="form-title-row">
-                <h1>Informações do livro</h1>
-            </div>
+                        <div class="form-row">
+                            <label>
+                                <span>Editora</span>
+                                <%= f.text_field :selo, class:'form-input'   %>
+                                <!--<input type="email" name="email">-->
+                            </label>
+                        </div>
+                        
+                        <%= hidden_field_tag "livro[escola_id]", "#{@escola.id}" %>
             
-            <div class="form-row">
-                <label>
-                    <span>Nome da obra e volume</span>
-                    <%= f.text_field :obra  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
+                        <%= hidden_field_tag "livro[list_id]", "#{@list.id}" %>
             
-            <div class="form-row">
-                <label>
-                    <span>Disciplina</span>
-                    <%= f.text_field :disciplina  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-          
-            <div class="form-row">
-                <label>
-                    <span>Autor(es)</span>
-                    <%= f.text_field :autor  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
             
-            <div class="form-row">
-                <label>
-                    <span>Edição</span>
-                    <%= f.text_field :edicao  %>
-                    <!--<input type="email" name="email">-->
-                </label>
+                        <div class="form-row">
+                            <button type="submit" class="btn btn-danger">Confirmar dados</button>
+                        </div>
+                    <% end %>
+        
+        
+                </div>
+        
             </div>
-
-            <div class="form-row">
-                <label>
-                    <span>Editora</span>
-                    <%= f.text_field :selo  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-            
-            <%= hidden_field_tag "livro[escola_id]", "#{@escola.id}" %>
-
-            <%= hidden_field_tag "livro[list_id]", "#{@list.id}" %>
-
-
-            <div class="form-row">
-                <button type="submit">Confirmar dados</button>
-            </div>
-<% end %>
-
-
+            <div class="col-lg-2"><p></p></div>
         </div>
-
-    </div>
+</div>

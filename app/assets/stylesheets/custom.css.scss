@@ -2,6 +2,10 @@ html{
     background-color: #fff;
 }
 
+body{
+    height:80%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -105,7 +109,7 @@ td:last-child {
 
 .form-row{
     position: relative;
-    text-align: left;
+    text-align: center;
     margin-bottom: 23px;
 }
 
@@ -258,11 +262,19 @@ td:last-child {
         max-width: 480px;
     }
 
-    .form-validation .form-row{
+    .form-validation{
         max-width: 300px;
         margin: 25px auto;
         text-align: left;
     }
+    
+    .form-row{
+        max-width: 300px;
+        margin: 25px auto;
+        text-align: center;
+    }
+    
+    
 
     .form-validation .form-title-row{
         margin-bottom: 50px;
@@ -318,7 +330,7 @@ td:last-child {
     margin: 0 auto;
     height: 100%;
 
-    font: bold 14px sans-serif;
+    font: bold 14px;
     text-align: center;
 }
 
@@ -339,8 +351,13 @@ td:last-child {
     margin-top: 32px;
 }
 
-.form-log-in-with-email .form-row{
-    text-align: left;
+.form-log-in-with-email{
+    text-align: center;
+    margin-bottom: 23px;
+}
+
+.form-row{
+    text-align: center;
     margin-bottom: 23px;
 }
 
@@ -355,7 +372,7 @@ td:last-child {
     color:  #4c565e;
     font-size: 2.5em;
     padding: 0 30px 15px;
-    border-bottom: 2px solid #6caee0;
+    border-bottom: 2px solid #D83570;
     margin:0;
 }
 
@@ -368,8 +385,7 @@ td:last-child {
     padding-right: 25px;
 }
 
-.form-log-in-with-email input{
-    color:  #5f5f5f;
+.form-input{
     box-sizing: border-box;
     width: 460px;
     box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
@@ -377,15 +393,17 @@ td:last-child {
     border: 1px solid #dbdbdb;
 }
 
+.btn-in-form{
+    box-sizing: border-box;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 12px 18px;
+    border: 1px solid #dbdbdb;
+}
+
 .form-log-in-with-email button{
     display: block;
-    border-radius: 2px;
-    background-color:  #6caee0;
     color: #ffffff;
-    font-weight: bold;
     box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
-    padding: 15px 35px;
-    border: 0;
     margin: 55px auto 0;
     cursor: pointer;
 }

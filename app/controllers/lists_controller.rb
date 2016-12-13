@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ListsController < ApplicationController
     def new
         @escola = Escola.find(params[:escola_id])
@@ -17,11 +19,40 @@ class ListsController < ApplicationController
         end
     end
     
+    def download
+        @list = List.find(params[:id])
+        @escola = @list.escola
+        respond_to do |format|
+            format.html
+            format.pdf do
+                render :pdf => "my_pdf_name.pdf",
+                    :disposition => "inline",
+                    :template => "lists_controller/show.pdf.erb"
+            end 
+        end
+    end
+    
+    def mostrar
+        @list = List.find(params[:id])
+        @escola = @list.escola
+        html = render_to_string(:action => :show, :layout => "show.html.erb")
+        pdf = wicked_pdf.new.pdf_from_string(html)
+        send_data(pdf, :filename => "ListaDeLivros.pdf", :disposition => 'attachment')
+    end
+    
     def show
-       @list = List.find(params[:id])
-       @escola = @list.escola
-       #@disciplinas = Livro.where(:segmento => @list.segmento).uniq.pluck(:disciplina);
-       @disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina); 
+        @list = List.find(params[:id])
+        @escola = @list.escola
+        #@disciplinas = Livro.where(:segmento => @list.segmento).uniq.pluck(:disciplina);
+        #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
+        respond_to do |format| 
+            format.html
+            format.pdf do
+              render :pdf => "lista.pdf",
+                     :template => "lists/pdf.html.erb",
+                     :layout => 'list_pdf'
+            end
+        end
     end
    
     def update
@@ -46,7 +77,7 @@ class ListsController < ApplicationController
         
     def edit
         @list = List.find(params[:id])
-        @disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
+        #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
         @livro = Livro.new
         
     end

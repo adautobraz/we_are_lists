@@ -1,13 +1,13 @@
 class LivrosController < ApplicationController
     def new
-        @escola = Escola.find(escola_list_id[:escola_id])
+        @escola = Escola.find(params[:escola_id])
         #@livro = livro.new(escola_id: @escola.id)
-        @list = List.find(escola_list_id[:list_id]) 
+        @list = List.find(params[:list_id]) 
         @livro = Livro.new
     end
     
     def create
-        @list = List.find(escola_list_id[:list_id])
+        @list = List.find(params[:livro][:list_id])
         @livro = Livro.new(livro_params)
  
         if @livro.save
@@ -29,10 +29,5 @@ class LivrosController < ApplicationController
         def livro_params
             params.require(:livro).permit(:selo, :edicao, :disciplina, :obra, :autor, :volume_serie)
         end
-        
-        def escola_list_id
-            params.require(:livro).permit(:list_id, :escola_id)
-        end
-    
     
 end

@@ -13,7 +13,7 @@
             <div class="form-white-background text-center">
                 <%= form_for @list do |f| %>
                     <div class="form-title-row">
-                        <h1>Criar Lista</h1>
+                        <h1>Nova Lista</h1>
                     </div>
                     <div class=" form_group row">
                         <%= f.label "Segmento", class:"col-xs-2 col-form-label"%>
@@ -22,11 +22,10 @@
                         </div>
                     </div>
                     
-                    <p></p>
-                    <p></p>
+                  <br><br>
                 
                     <div class="form_group row">
-                        <%= link_to 'Criar lista', escola_lists_path(f, escola_id: @escola.id), :method => :post, :class =>' btn btn-secondary btn-lg'   %>
+                        <%= link_to 'Criar lista', escola_lists_path(f, escola_id: @escola.id), :method => :post, :class =>' btn btn-danger'   %>
                         <!--<button type="submit">Confirmar dados</button>-->
                     </div>
                 

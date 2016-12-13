@@ -19,7 +19,7 @@
           <h3><%= "Lista" + "#{f.segmento}" %></h3>
         </div>
         <div clas= "col-md-2">
-          <h5><small><%= link_to 'editar', escola_list_path(escola_id: @escola.id) %></small></h5>
+          <h5><small><%= link_to 'editar', list_path(f) %></small></h5>
         </div>
         <% end %>
     </div>
@@ -29,7 +29,7 @@
 
     <div class="row">
         <div class="text-center">
-            <%= link_to 'Criar lista', new_escola_list_path(escola_id: @escola.id), :class =>' btn btn-secondary btn-lg'   %>
+            <%= link_to 'Criar lista', new_escola_list_path(escola_id: @escola.id), :class =>' btn btn-danger'   %>
         </div>
     </div>
         

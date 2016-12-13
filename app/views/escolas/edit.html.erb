@@ -17,63 +17,47 @@
                 <div class="form-row">
                     <label>
                         <span>Nome</span>
-                        <%= f.text_field :nome %>
-                        <!--<input type="email" name="email">-->
+                        <%= f.text_field :nome, class:"form-input" %>
                     </label>
                 </div>
-                
-                  <div class="form-row">
-                    <label>
-                        <span>CEP</span>
-                        <input type="email" name="email">
-                    </label>
-                </div>
-                
-                
+            
                 <div class="form-row">
                     <label>
                         <span>Endereço</span>
-                        <input type="email" name="email">
+                        <%= f.text_field :endereco, class:"form-input" %>
                     </label>
                 </div>
-                
-                   <div class="form-row">
-                    <label>
-                        <span>Número</span>
-                        <input type="email" name="email">
-                    </label>
-                </div>
-                
-                <div class="form-row">
-                    <label>
-                        <span>Complemento</span>
-                        <input type="email" name="email">
-                    </label>
-                </div>
-                
+
                 <div class="form-row">
                     <label>
                         <span>Bairro</span>
-                        <input type="email" name="email">
+                        <%= f.text_field :bairro, class:"form-input" %>
                     </label>
                 </div>
     
                 <div class="form-row">
                     <label>
-                        <span>Telefone</span>
-                        <input type="email" name="email">
+                        <span>Telefone 1</span>
+                        <%= f.text_field :telefone1, class:"form-input" %>
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Telefone 2</span>
+                        <%= f.text_field :telefone2, class:"form-input" %>
                     </label>
                 </div>
                 
                 <div class="form-row">
                     <label>
                         <span>Site</span>
-                        <input type="email" name="email">
+                        <%= f.text_field :site, class:"form-input" %>
                     </label>
                 </div>
     
                 <div class="form-row">
-                    <button type="submit">Confirmar dados</button>
+                    <button type="submit" class="btn btn-danger">Confirmar dados</button>
                 </div>
             <% end %>
 

@@ -8,20 +8,23 @@
                     <h1>Gerador de Listas</h1></br></br>
                     <h5>Para começar, insira número MEC da Escola</h5>
                 </div>
-    
+
                 <div class="form-row">
                     <label>
                         <span>Número MEC</span>
-                        <input name="mec">
+                        <input name="mec" class="form-input">
                     </label>
                 </div>
-    
+                <br>
                 <div class="form-row">
-                    <%= button_to 'Confirmar Dados', escolas_fetch_path, method: :post%>
+                    <%= button_to 'Confirmar Dados', escolas_fetch_path, method: :post, class:"btn btn-danger"%>
                     <!--<button type="submit">Confirmar dados</button>-->
                 </div>
     
             </div>
+            
+              
     
         </div>
+        
 <% end %> 
