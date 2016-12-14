@@ -1,14 +1,14 @@
 <div class="jumbotron">
     <div class="container">
       <h2><%= @escola.nome %></h2>
-      <h4><%= "#{@escola.endereco}" + ", " + "#{@escola.bairro}"  + " - " + "#{@escola.municipio}" +  + "/" + "#{@escola.uf}"  %></h4>
+      <h4><%= "#{@escola.endereco}" + ", " + "#{@escola.bairro}"  + " - " + "#{@escola.municipio}" + "/" + "#{@escola.uf}"  %></h4>
       <h5>
         <%= "#{@escola.telefone1}"%>
-        <% if @escola.telefone2.present? %>
+        <% unless @escola.telefone2.nil? %>
           <%= " / " +  "#{@escola.telefone2}" %>
         <% end %>
       </h5>
-      <% if @escola.site.present? %>
+      <% unless @escola.site.nil? %>
         <h5><%= "#{@escola.site}"%></h5>
       <% end %>
       <%= link_to 'Editar informações', edit_escola_path(@escola), :class =>' btn btn-danger btn-sm'   %>

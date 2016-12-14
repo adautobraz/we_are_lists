@@ -27,9 +27,9 @@ namespace :import do
         telefone2 = ""
       end
       escola = Escola.create!({mec: row2[0], nome: row2[1], cnpj: row2[2], endereco: endereco, bairro: row2[7], cep: row2[8], municipio: row2[9], uf: row2[10], telefone1: telefone1, telefone2: telefone2, site: row2[14]})
-      puts "#{mec} - #{escola.errors.full_messages.join(",")}" if escola.errors.any?
+      #puts "#{mec} - #{escola.errors.full_messages.join(",")}" if escola.errors.any?
       contador += 1 if escola.persisted?
-      puts "#{contador}"
+      #puts "#{contador}"
     end
     puts "Importou escolas"
   end
