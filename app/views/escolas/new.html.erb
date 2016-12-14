@@ -6,88 +6,81 @@
     </ul>
 <% end %>
 
- <div class="form-log-in-with-email">
-
-        <div class="form-white-background">
-            <%= form_for @escola do |f| %>
-            
-            <div class="form-title-row">
-                <h1>Informações da Escola</h1>
-            </div>
-            
-            <div class="form-row">
-                <label>
-                    <span>Nome</span>
-                    <%= f.text_field :nome  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-            
-            <div class="form-row">
-                <label>
-                    <span>Endereço</span>
-                    <%= f.text_field :endereco  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-            
-            <div class="form-row">
-                <label>
-                    <span>Bairro</span>
-                    <%= f.text_field :bairro  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-            
-            <div class="form-row">
-                <label>
-                    <span>Município</span>
-                    <%= f.text_field :municipio  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-            
-            <div class="form-row">
-                <label>
-                    <span>UF</span>
-                    <%= f.text_field :uf  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label>
-                    <span>Telefone</span>
-                    <%= f.text_field :telefone1  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-            
-            <div class="form-row">
-                <label>
-                    <span>Site</span>
-                    <%= f.text_field :site  %>
-                    <!--<input type="email" name="email">-->
-                </label>
-            </div>
-
-            <div class="form-row">
-                <button type="submit">Confirmar dados</button>
-            </div>
-<% end %>
-
-
+<div class="col-lg-12">
+    <div class="container">
+        <div class="col-lg-2"><p></p></div>
+        <div class="form-log-in-with-email col-lg-8">
+            <div class="form-white-background">
+                <%= form_for @escola do |f| %>
+                
+                <div class="form-title-row">
+                    <h1>Informações da Escola</h1>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Nome</span>
+                        <%= f.text_field :nome, class:'form-input'  %>
+                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Endereço</span>
+                        <%= f.text_field :endereco, class:'form-input'   %>
+                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Bairro</span>
+                        <%= f.text_field :bairro, class:'form-input'   %>
+                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Município</span>
+                        <%= f.text_field :municipio, class:'form-input'   %>
+                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>UF</span>
+                        <%= f.text_field :uf, class:'form-input'   %>
+                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+    
+                <div class="form-row">
+                    <label>
+                        <span>Telefone</span>
+                        <%= f.text_field :telefone1, class:'form-input'   %>
+                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Site</span>
+                        <%= f.text_field :site, class:'form-input'   %>
+                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+    
+                <div class="form-row">
+                    <button type="submit" class="btn btn-danger">Confirmar dados</button>
+                </div>
+                <% end %>
+          </div>
         </div>
-
+        <div class="col-lg-2"><p></p></div>
     </div>
+</div>
 
-
-<!--
-<form class="form-login" method="post" action="#">
-
-   
-
-</form>
-
--->
     

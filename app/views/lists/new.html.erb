@@ -15,18 +15,26 @@
                     <div class="form-title-row">
                         <h1>Nova Lista</h1>
                     </div>
-                    <div class=" form_group row">
-                        <%= f.label "Segmento", class:"col-xs-2 col-form-label"%>
-                        <div class="col-xs-10">
-                            <%= f.select(:segmento, ['Educação Infantil','Ensino Fundamental 1', 'Ensino Fundamental 2', 'Ensino Médio'], {}, { :class => "form-control" }) %>
-                        </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span>Série</span>
+                            <%= f.text_field :serie, class:'form-input'  %>
+                            <!--<input type="email" name="email">-->
+                        </label>
                     </div>
                     
-                  <br><br>
-                
-                    <div class="form_group row">
-                        <%= link_to 'Criar lista', escola_lists_path(f, escola_id: @escola.id), :method => :post, :class =>' btn btn-danger'   %>
-                        <!--<button type="submit">Confirmar dados</button>-->
+                    <div class="form-row">
+                        <label>
+                            <span>Segmento</span>
+                            <%= f.select(:segmento, ['Educação Infantil','Ensino Fundamental 1', 'Ensino Fundamental 2', 'Ensino Médio'], {}, { :class => "form-input" }) %>
+                        </label>
+                    </div>
+                    <%# hidden_field_tag "livro[list_id]", "#{@list.id}" %>
+                    <%= hidden_field_tag "list[escola_id]", "#{@escola.id}" %>
+                    
+                    <div class="form-row">
+                        <%= button_to 'Criar lista', escola_lists_path(escola_id: @escola.id), :method => :post, :class =>' btn btn-danger', :type => 'submit'   %>
                     </div>
                 
                 <% end %>

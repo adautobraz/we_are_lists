@@ -3,41 +3,19 @@
 class ListsController < ApplicationController
     def new
         @escola = Escola.find(params[:escola_id])
-        @list = List.new(escola_id: @escola.id)
+        @list = List.new
     end
     
     def create
-        @escola = Escola.find(params[:escola_id])
-        @list = List.new(escola_id: @escola.id)
-        #@list.segmento = params[:segmento]
- 
+        @escola = Escola.find(list_params[:escola_id])
+        @list = List.new(list_params)
+
         if @list.save
             flash[:notice] = "Lista adicionada com sucesso"
             redirect_to escola_list_path(@escola, @list)
         else
-            render 'new'
+            redirect_to new_escola_list_path(escola_id: @escola.id)
         end
-    end
-    
-    def download
-        @list = List.find(params[:id])
-        @escola = @list.escola
-        respond_to do |format|
-            format.html
-            format.pdf do
-                render :pdf => "my_pdf_name.pdf",
-                    :disposition => "inline",
-                    :template => "lists_controller/show.pdf.erb"
-            end 
-        end
-    end
-    
-    def mostrar
-        @list = List.find(params[:id])
-        @escola = @list.escola
-        html = render_to_string(:action => :show, :layout => "show.html.erb")
-        pdf = wicked_pdf.new.pdf_from_string(html)
-        send_data(pdf, :filename => "ListaDeLivros.pdf", :disposition => 'attachment')
     end
     
     def show
@@ -73,8 +51,6 @@ class ListsController < ApplicationController
        render 'show'
     end
     
-    
-        
     def edit
         @list = List.find(params[:id])
         #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
@@ -84,7 +60,7 @@ class ListsController < ApplicationController
 
     private
         def list_params
-            params.require(:list).permit(:nome_escola, :segmento)
+            params.require(:list).permit(:segmento, :serie, :escola_id)
         end
         
         def livro_params
