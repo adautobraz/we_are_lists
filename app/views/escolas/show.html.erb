@@ -2,9 +2,8 @@
     <div class="container">
       <h2><%= @escola.nome %></h2>
       <h4><%= "#{@escola.endereco}" + ", " + "#{@escola.bairro}"  + " - " + "#{@escola.municipio}" + "/" + "#{@escola.uf}"  %></h4>
-      <h5>
-        <%= "#{@escola.telefone1}"%>
-        <% unless @escola.telefone2.nil? %>
+      <h5><%= @escola.telefone1 %>
+        <% unless @escola.telefone2.present? %>
           <%= " / " +  "#{@escola.telefone2}" %>
         <% end %>
       </h5>

@@ -4,7 +4,7 @@
   <meta charset='utf-8' />
   <title>Lista PDF</title>
   <style>
-    <%= Rails.application.assets.find_asset('pdf.css.scss').to_s %>
+    <%= CompassRails.sprockets.find_asset(logical_file_path).to_s %>
   </style>
 </head>
 <body class="document">
