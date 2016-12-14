@@ -18,6 +18,14 @@ class ListsController < ApplicationController
         end
     end
     
+    def delete
+        @livro = Livro.find(params[:livro_id])
+        @list = List.find(params[:list_id])
+        @escola = @list.escola
+        @list.livros.delete(@livro)
+        redirect_to escola_list_path(@list.escola, @list)
+    end
+    
     def show
         @list = List.find(params[:id])
         @escola = @list.escola
@@ -35,14 +43,15 @@ class ListsController < ApplicationController
    
     def update
         @list = List.find(params[:id])
-        @disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
+        @escola = @list.escola
+        #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
         @livro = Livro.find_by(:isbn => params[:isbn])
         if @livro.nil?
             flash[:notice] = "Livro não está na base dados"
             redirect_to edit_list_path(@list)
         else
             @list.livros << @livro
-            render 'show'
+            redirect_to escola_list_path(@escola, @list)
         end
     end
     
@@ -52,6 +61,8 @@ class ListsController < ApplicationController
         @list.delete
         redirect_to escola_path(@escola)
     end
+    
+    
     
     def edit
         @list = List.find(params[:id])

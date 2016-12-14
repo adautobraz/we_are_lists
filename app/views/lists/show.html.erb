@@ -1,3 +1,7 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/custom.css.scss">
+</head>
+
 <body>
   <div class="jumbotron">
       <div class="container">
@@ -9,7 +13,7 @@
   
   <div class="container ">
     <div class="row row-centered">
-      <div class="col-md-10">
+      <div class="col-md-10 col-md-offset-1">
         <% if @list.livros.any? %>
         <table class="text-center">
           <thead>
@@ -26,22 +30,25 @@
                         <td class="top_row"></td>
                     </tr>
                     <tr>
-                        <td class="middle_row"><%= "#{f.disciplina}".split.map(&:capitalize)*' ' %></td>
+                        <td class="middle_row_center"><%= "#{f.disciplina}".split.map(&:capitalize)*' ' %></td>
                         <td class="middle_row"><%= "#{f.autor}".sub('"', '').split.map(&:capitalize)*' ' %></td>
                         <td class="middle_row">
+                          <%= link_to "editar", edit_escola_list_livro_path(@escola, @list, f) %>
+                          <%= link_to "deletar", delete_livro_from_list_path(escola_id: @escola, list_id: @list, livro_id: f.id) %>   
                           <i class="material-icons button delete"></i>
                         </td>
                     </tr>
                     <tr>
                         <td class="bottom_row"></td>
-                        <td class="bottom_row"><%= "#{f.selo}".capitalize + ", " + "#{f.volume_serie}" + ", " + "#{f.edicao}" + "ª edição"  %></td>
+                        <td class="bottom_row"><%= "#{f.volume_serie}" + ", " + "#{f.edicao}" + "ª edição"+ ", " + "#{f.selo}".capitalize   %></td>
                         <td class="bottom_row"></td>
                     </tr>
               </tbody>
             <% end %>
         </table>
         <% end %>
-        
+      </div>
+          
         <div class="form-group"> 
           <%= button_to 'Adicionar obra da Somos', edit_list_path, method: :get, class: ' btn btn-danger' %>
         </div>
@@ -51,8 +58,6 @@
         <div class="form-group">
           <%= button_to 'Exportar lista', escola_list_path(escola_id: @list.escola, list_id: @list, :format => :pdf), method: :get, class: ' btn btn-danger' %>
         </div>
- 
-      </div>
     </div>
   </div>
 </body>
