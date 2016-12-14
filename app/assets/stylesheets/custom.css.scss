@@ -12,6 +12,21 @@ body{
   box-sizing: border-box;
 }
 
+.table-container {
+    margin: 0 -15px;
+}
+
+.table-row {
+    display: table;
+    width: 100%;
+}
+
+.table-row [class^="col"] {
+    display: table-cell;
+    padding: 0 15px;
+    float: none;
+}
+
 tbody td.top_row{
     border-top: 1px solid #ddd;
 }

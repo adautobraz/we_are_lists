@@ -46,9 +46,11 @@ class ListsController < ApplicationController
         end
     end
     
-    def remove
-       @list.livros.delete(Livro.find(params[:livro_id]))
-       render 'show'
+    def destroy
+        @list = List.find(params[:id])
+        @escola = Escola.find(@list.escola_id)
+        @list.delete
+        redirect_to escola_path(@escola)
     end
     
     def edit

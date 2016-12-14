@@ -11,21 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213183526) do
+ActiveRecord::Schema.define(version: 20161214115737) do
 
   create_table "escolas", force: :cascade do |t|
-    t.integer "mec",         limit: 8
+    t.integer "mec",       limit: 8
     t.string  "nome"
     t.string  "cnpj"
-    t.string  "logradouro"
     t.string  "endereco"
-    t.string  "numero"
-    t.string  "complemento"
     t.string  "bairro"
-    t.integer "cep",         limit: 8
+    t.integer "cep",       limit: 8
     t.string  "municipio"
     t.string  "uf"
-    t.string  "ddd"
     t.string  "telefone1"
     t.string  "telefone2"
     t.string  "site"
@@ -33,7 +29,6 @@ ActiveRecord::Schema.define(version: 20161213183526) do
 
   create_table "lists", force: :cascade do |t|
     t.string  "segmento"
-    t.string  "nome_escola"
     t.integer "escola_id"
     t.string  "serie"
   end

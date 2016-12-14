@@ -3,7 +3,7 @@
       <div class="container">
         <h1>Lista de livros</h1>
         <h3><%= "#{@list.serie}" + " - "  + "#{@list.segmento}"%></h3>
-        <h5><%= "#{@list.escola.nome}"%></h5>
+        <h5><%= link_to "#{@list.escola.nome}", escola_path(@escola)%></h5>
       </div>
   </div>
   

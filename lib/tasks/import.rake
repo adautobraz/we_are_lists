@@ -6,7 +6,7 @@ namespace :import do
   task escolas: :environment do
     filename = File.join Rails.root, "escolas.csv"
     contador = 0
-    CSV.foreach(filename, encoding:'iso-8859-1:utf-8',  headers: true, :quote_char => "<", :col_sep => ";") do |row|
+    CSV.foreach(filename, encoding:'UTF-8',  headers: true, :quote_char => "<", :col_sep => ";") do |row|
       row2=[]
       for i in 0..14
         if row[i].to_s.encoding.to_s.eql? "US-ASCII"
@@ -15,8 +15,18 @@ namespace :import do
           row2[i] = row[i]
         end
       end
-      endereco = row2[3] + row2[4] + ", " + row2[5] + ", " + row2[]
-      escola = Escola.create!({mec: row2[0], nome: row2[1], cnpj: row2[2], logradouro: row2[3], endereco: endereco, numero: row2[5], complemento: row2[6], bairro: row2[7], cep: row2[8], municipio: row2[9], uf: row2[10], ddd: row2[11], telefone1: row2[12], telefone2: row2[13], site: row2[14]})
+      endereco = row2[3] + "  " + row2[4] + ", " + row2[5]
+      if(row2[6].present?)
+        endereco = endereco+ ", " + row2[6]
+      end
+      m = row2[12].length - 5
+      telefone1 = "(" + row2[11] + ") " + row2[12][0..m] + "-" + row2[12].split(//).last(4).join
+      if (row2[13].present?)
+        telefone2 = "(" + row2[11] + ") " + row2[13][0..m] + "-" + row2[13].split(//).last(4).join
+      else
+        telefone2 = ""
+      end
+      escola = Escola.create!({mec: row2[0], nome: row2[1], cnpj: row2[2], endereco: endereco, bairro: row2[7], cep: row2[8], municipio: row2[9], uf: row2[10], telefone1: telefone1, telefone2: telefone2, site: row2[14]})
       puts "#{mec} - #{escola.errors.full_messages.join(",")}" if escola.errors.any?
       contador += 1 if escola.persisted?
       puts "#{contador}"

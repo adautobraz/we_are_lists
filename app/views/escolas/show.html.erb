@@ -2,25 +2,36 @@
     <div class="container">
       <h2><%= @escola.nome %></h2>
       <h4><%= "#{@escola.endereco}" + ", " + "#{@escola.bairro}"  + " - " + "#{@escola.municipio}" +  + "/" + "#{@escola.uf}"  %></h4>
-      <h5><%= "#{@escola.telefone1}"%></h5>
-      <h5><%= "#{@escola.site}"%></h5>
+      <h5>
+        <%= "#{@escola.telefone1}"%>
+        <% if @escola.telefone2.present? %>
+          <%= " / " +  "#{@escola.telefone2}" %>
+        <% end %>
+      </h5>
+      <% if @escola.site.present? %>
+        <h5><%= "#{@escola.site}"%></h5>
+      <% end %>
       <%= link_to 'Editar informações', edit_escola_path(@escola), :class =>' btn btn-danger btn-sm'   %>
 
     </div>
 </div>
 
-<div class="container">
+<div class="table-container">
   <div clas= "col-md-8 col-md-offset-2">
     <% if @escola.lists.any? %>
       <div class= "col-md-8 col-md-offset-2">
-         <div class="row">
+         <div class="table-row">
             <% @escola.lists.each do |f| %>
-            <div class= "col-md-10 vertical-align">
+            <div class= "col-md-6 style="margin:">
               <h3><%= "Lista " + "#{f.serie}" %></h3>
             </div>
-            <div class= "col-md-2">
-              <h5><%= link_to 'editar', escola_list_path(@escola, f), class:"btn btn-sm btn-danger" %></h5>
+            <div class="btn-justified col-md-6 btn-group pull-right">
+              <%= link_to 'editar', escola_list_path(@escola, f), class:" btn-sm btn-danger" %>
+              <%= link_to 'deletar', escola_list_path(@escola, f),:method => :delete, class:" btn-sm btn-danger" %>
+              <%= link_to 'exportar', escola_list_path(@escola, f, :format => :pdf), class:" btn-sm btn-danger" %>
+
             </div>
+
             <% end %>
     </div>
     <% end %>
