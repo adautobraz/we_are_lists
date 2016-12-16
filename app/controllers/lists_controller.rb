@@ -4,6 +4,10 @@ class ListsController < ApplicationController
     def new
         @escola = Escola.find(params[:escola_id])
         @list = List.new
+        @ef1 = ["1º ano", "2º ano", "3º ano","4º ano", "5º ano"]
+        @ef2 = ["6º ano", "7º ano", "8º ano","9º ano"]
+        @em = ["1º ano", "2º ano", "3º ano"]
+        @ei = ["Pré 1", "Pré 2", "Pré3"]
     end
     
     def create
@@ -45,10 +49,16 @@ class ListsController < ApplicationController
         @list = List.find(params[:id])
         @escola = @list.escola
         #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
-        @livro = Livro.find_by(:isbn => params[:isbn])
+        @livro = Livro.find_by(:obra => obra_data[:obra])
         if @livro.nil?
-            flash[:notice] = "Livro não está na base dados"
-            redirect_to edit_list_path(@list)
+            @livro = Livro.find_by(:obra => obra_data[:isbn])
+            if @livro.nil?
+                flash[:notice] = "Livro não está na base dados"
+                redirect_to edit_list_path(@list)
+            else
+                @list.livros << @livro
+                redirect_to escola_list_path(@escola, @list)
+            end
         else
             @list.livros << @livro
             redirect_to escola_list_path(@escola, @list)
@@ -67,6 +77,11 @@ class ListsController < ApplicationController
     def edit
         @list = List.find(params[:id])
         #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
+        @livros = Livro.where(segmento:[@list.segmento, 'Informativo Juvenil', 'Informativo Infantil', 'Literatura Infantil', 'Literatura Juvenil', 'Atlas/Dicionários'])
+        @disciplinas = @livros.order(:disciplina).uniq.pluck(:disciplina)
+        @colecoes = @livros.order(:colecao).uniq.pluck(:colecao)
+        @mapDisciplinasColecoes = Hash[@disciplinas.collect { |v| [v, @livros.where(disciplina: v).uniq.pluck(:colecao)]}]
+        @mapColecoesObras = Hash[@colecoes.collect { |v| [v, @livros.where(colecao: v).uniq.pluck(:obra)]}]
         @livro = Livro.new
         
     end
@@ -75,9 +90,9 @@ class ListsController < ApplicationController
         def list_params
             params.require(:list).permit(:segmento, :serie, :escola_id)
         end
-        
-        def livro_params
-            params.require(:list).permit(:isbn)
+
+        def obra_data
+            params.require(:livro).permit(:disciplina, :colecao, :obra, :isbn)
         end
     
 end

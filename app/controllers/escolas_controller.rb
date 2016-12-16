@@ -1,6 +1,8 @@
 class EscolasController < ApplicationController
-   def new 
-       @escola = Escola.new
+   def new
+      @escola = Escola.new
+      @mec = params[:mec]
+      puts("O mec dessa escola vale" + "#{@mec}")
    end
    
    def edit
@@ -17,30 +19,40 @@ class EscolasController < ApplicationController
          flash[:notice] = "Informações da escola atualizadas"
          redirect_to escola_path(@escola)
       else
-         render 'edit'
+         flash[:notice] = "Preencha todos os campos obrigatórios"
+         redirect_to edit_escola_path(@escola)
       end
    end
    
    def fetch
-       @escola = Escola.where(mec: params[:mec]).first
-       if @escola.blank?
-           flash[:notice] = "Escola não está no banco de dados"
-           redirect_to new_escola_path
-       else
-          puts "Achou a escola" + "#{@escola.nome}"
-           redirect_to edit_escola_path(@escola)
-       end
+      @escola = Escola.where(mec: params[:mec]).first
+      @mec = params[:mec]
+      if @escola.blank?
+         flash[:notice] = "Escola não está no banco de dados"
+         redirect_to new_escola_path(mec: @mec)
+      else
+         flash[:notice] = "Escola não está no banco de dados"
+         puts "Achou a escola" + "#{@escola.nome}"
+         redirect_to edit_escola_path(@escola)
+      end
    end
    
    def create
-       @escola = Escola.new(escola_params)
-       @escola.save
-       redirect_to escola_path(@escola)
+      @escola = Escola.new(escola_params)
+      @mec = escola_params[:mec]
+      if @escola.save
+         flash[:notice] = "Dados atualizadas com sucesso"
+         redirect_to escola_path(@escola)
+      else
+         flash[:notice] = "Preencha todos os campos obrigatórios"
+         redirect_to new_escola_path(mec: @mec)
+      end
+
    end
    
   private
   def escola_params
-      params.require(:escola).permit(:mec, :nome, :cnpj, :logradouro, :endereco, :numero, :complemento, :bairro, :cep, :municipio, :uf, :ddd, :telefone1, :telefone2, :site)
+      params.require(:escola).permit(:mec, :nome, :cnpj, :endereco, :bairro, :cep, :municipio, :uf,:telefone1, :telefone2, :site)
   end
     
 end

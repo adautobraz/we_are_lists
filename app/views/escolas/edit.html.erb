@@ -17,59 +17,59 @@
                     <h1>Informações da Escola</h1>
                 </div>
                 
+                  <div class="form-row">
+                    <label>
+                        <span>Código MEC*</span>
+                        <%= f.text_field :mec, class:'form-input'  %>
+                    </label>
+                </div>
+                
                 <div class="form-row">
                     <label>
-                        <span>Nome</span>
+                        <span>Nome*</span>
                         <%= f.text_field :nome, class:'form-input'  %>
-                        <!--<input type="email" name="email">-->
                     </label>
                 </div>
                 
                 <div class="form-row">
                     <label>
-                        <span>Endereço</span>
+                        <span>Endereço*</span>
                         <%= f.text_field :endereco, class:'form-input'   %>
-                        <!--<input type="email" name="email">-->
                     </label>
                 </div>
                 
                 <div class="form-row">
                     <label>
-                        <span>Bairro</span>
+                        <span>Bairro*</span>
                         <%= f.text_field :bairro, class:'form-input'   %>
-                        <!--<input type="email" name="email">-->
                     </label>
                 </div>
                 
                 <div class="form-row">
                     <label>
-                        <span>Município</span>
+                        <span>Município*</span>
                         <%= f.text_field :municipio, class:'form-input'   %>
-                        <!--<input type="email" name="email">-->
                     </label>
                 </div>
                 
                 <div class="form-row">
                     <label>
-                        <span>UF</span>
+                        <span>UF*</span>
                         <%= f.text_field :uf, class:'form-input'   %>
-                        <!--<input type="email" name="email">-->
+                    </label>
+                </div>
+                
+                <div class="form-row">
+                    <label>
+                        <span>Telefone 1*</span>
+                        <%= f.text_field :telefone1, class:'form-input'   %>
                     </label>
                 </div>
     
                 <div class="form-row">
                     <label>
-                        <span>Telefone 1</span>
-                        <%= f.text_field :telefone1, class:'form-input'   %>
-                        <!--<input type="email" name="email">-->
-                    </label>
-                </div>
-                
-                <div class="form-row">
-                    <label>
                         <span>Telefone 2</span>
-                        <%= f.text_field :telefone1, class:'form-input'   %>
-                        <!--<input type="email" name="email">-->
+                        <%= f.text_field :telefone2, class:'form-input'   %>
                     </label>
                 </div>
                 
@@ -80,6 +80,11 @@
                         <!--<input type="email" name="email">-->
                     </label>
                 </div>
+                
+                <div class="form-row">
+                    <h5 class="pull-left">(*) campos obrigatórios</h5>
+                </div>
+                <br>
     
                 <div class="form-row">
                     <button type="submit" class="btn btn-danger">Confirmar dados</button>

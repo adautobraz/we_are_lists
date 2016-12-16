@@ -47,7 +47,9 @@ namespace :import do
           row2[i] = row[i]
         end
       end
-      livro = Livro.create!({isbn: row2[0], selo: row2[1], edicao: row2[2], volume_serie: row2[3], disciplina: row2[4], segmento: row2[5], colecao: row2[6], obra: row2[7], autor: row2[8]})
+      disciplina = row2[4].split.map(&:capitalize).join(' ')
+      puts(disciplina)
+      livro = Livro.create!({isbn: row2[0], selo: row2[1], edicao: row2[2], volume_serie: row2[3], disciplina: disciplina, segmento: row2[5], colecao: row2[6], obra: row2[7], autor: row2[8]})
       puts "#{mec} - #{livro.errors.full_messages.join(",")}" if livro.errors.any?
       contador += 1 if livro.persisted?
       puts "#{contador}"

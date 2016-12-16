@@ -18,18 +18,19 @@
 
                     <div class="form-row">
                         <label>
+                            <span>Segmento</span>
+                            <%= f.select(:segmento, ['Educação Infantil','Ensino Fundamental 1', 'Ensino Fundamental 2', 'Ensino Médio'], {}, { :class => "form-input" }) %>
+                        </label>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label>
                             <span>Série</span>
                             <%= f.text_field :serie, class:'form-input'  %>
                             <!--<input type="email" name="email">-->
                         </label>
                     </div>
                     
-                    <div class="form-row">
-                        <label>
-                            <span>Segmento</span>
-                            <%= f.select(:segmento, ['Educação Infantil','Ensino Fundamental 1', 'Ensino Fundamental 2', 'Ensino Médio'], {}, { :class => "form-input" }) %>
-                        </label>
-                    </div>
                     <%# hidden_field_tag "livro[list_id]", "#{@list.id}" %>
                     <%= hidden_field_tag "list[escola_id]", "#{@escola.id}" %>
                     
