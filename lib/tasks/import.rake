@@ -36,7 +36,7 @@ namespace :import do
   
   desc "Importando livros do arquivo csv"
   task livros: :environment do
-    filename = File.join Rails.root, "livros4.csv"
+    filename = File.join Rails.root, "livros.csv"
     contador = 0
     CSV.foreach(filename, encoding: "UTF-8",  headers: true, :row_sep => :auto, :quote_char => "<", :col_sep => "\t") do |row|
       row2=[]

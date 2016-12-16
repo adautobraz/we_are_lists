@@ -43,7 +43,12 @@
                     </tr>
                     <tr>
                         <td class="bottom_row"></td>
-                        <td class="bottom_row"><%= "#{f.volume_serie}" + ", " + "#{f.edicao}" + "ª edição"+ ", " + "#{f.selo}".capitalize   %></td>
+                        <td class="bottom_row">
+                          <% if f.volume_serie.present? %>
+                            <%= "#{f.volume_serie}" + ", " %>
+                          <% end %>
+                          <%= "#{f.edicao}" + "ª edição"+ ", " + "#{f.selo}".capitalize   %>
+                          </td>
                         <td class="bottom_row"></td>
                     </tr>
               </tbody>
