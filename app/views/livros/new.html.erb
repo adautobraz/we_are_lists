@@ -14,54 +14,67 @@
                         <div class="form-title-row">
                             <h1>Informações do livro</h1>
                         </div>
-                        
-                        <div class="form-row">
+
+                         <div class="form-row">
                             <label>
                                 <span>Obra</span>
-                                <%= f.text_field :obra, class:'form-input'  %>
+                                <%= f.text_field :obra, class:'form-input' %>
                                 <!--<input type="email" name="email">-->
                             </label>
                         </div>
                         
                         <div class="form-row">
                             <label>
-                                <span>Volume</span>
-                                <%= f.text_field :volume_serie, class:'form-input'  %>
+                                <span>Obra*</span>
+                                <%= f.text_field :obra, class:'form-input',  placeholder:'Ex.: Matemática no Cotidiano'   %>
                                 <!--<input type="email" name="email">-->
                             </label>
                         </div>
                         
                         <div class="form-row">
                             <label>
-                                <span>Disciplina</span>
-                                <%= f.text_field :disciplina, class:'form-input'   %>
+                                <span>Volume*</span>
+                                <%= f.text_field :volume_serie, class:'form-input',  placeholder:'Ex.: Vol. 6'   %>
+                                <!--<input type="email" name="email">-->
+                            </label>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label>
+                                <span>Disciplina*</span>
+                                <%= f.text_field :disciplina, class:'form-input',  placeholder:'Ex.: Matemática'    %>
                                 <!--<input type="email" name="email">-->
                             </label>
                         </div>
                       
                         <div class="form-row">
                             <label>
-                                <span>Autor(es)</span>
-                                <%= f.text_field :autor, class:'form-input'   %>
+                                <span>Autor(es)*</span>
+                                <%= f.text_field :autor, class:'form-input',  placeholder:'Ex.: Lucas Silva' %>
                                 <!--<input type="email" name="email">-->
                             </label>
                         </div>
                         
                         <div class="form-row">
                             <label>
-                                <span>Edição</span>
-                                <%= f.text_field :edicao, class:'form-input'   %>
+                                <span>Edição*</span>
+                                <%= f.text_field :edicao, class:'form-input', placeholder:'Ex.: 3' %>
                                 <!--<input type="email" name="email">-->
                             </label>
                         </div>
             
                         <div class="form-row">
                             <label>
-                                <span>Editora</span>
-                                <%= f.text_field :selo, class:'form-input'   %>
+                                <span>Editora*</span>
+                                <%= f.text_field :selo, class:'form-input', placeholder:'Ex.: Ática' %>
                                 <!--<input type="email" name="email">-->
                             </label>
                         </div>
+                        
+                        <div class="form-row">
+                            <h5 class="pull-left">(*) campos obrigatórios</h5>
+                        </div>
+                        <br>
                         
                         <%= hidden_field_tag "livro[escola_id]", "#{@escola.id}" %>
             

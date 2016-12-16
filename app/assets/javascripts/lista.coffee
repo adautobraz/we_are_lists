@@ -28,9 +28,3 @@ jQuery ->
             $('#livro_obra').parent().hide()
 
 
-                
-        
-    
-                
-        
-    

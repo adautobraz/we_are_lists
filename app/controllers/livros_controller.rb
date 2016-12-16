@@ -15,8 +15,8 @@ class LivrosController < ApplicationController
             @list.livros << @livro
             redirect_to list_path(@list)
         else
-            flash[:notice] = "Não foi possível adicionar este livro"
-            redirect_to list_path 'new'
+            flash[:notice] = "Preencha todos os campos obrigatórios"
+            redirect_to new_escola_list_livro_path(@list.escola, @list)        
         end
     end
     

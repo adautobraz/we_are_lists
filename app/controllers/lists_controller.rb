@@ -18,6 +18,7 @@ class ListsController < ApplicationController
             flash[:notice] = "Lista adicionada com sucesso"
             redirect_to escola_list_path(@escola, @list)
         else
+            flash[:notice] = "Preencha todos os campos obrigatórios"
             redirect_to new_escola_list_path(escola_id: @escola.id)
         end
     end
