@@ -8,33 +8,31 @@
                         <h1>Adicionar obra</h1>
                     </div>
                     
-                                
                     <div class="form-row">
                         <label>
-                            <span>ISBN</span>
-                            <%= text_field_tag(:isbn, nil, class: 'form-input')%>
+                            <span>Categoria</span>
+                            <%= select(:livro, :categoria, ['Didático', 'Paradidático'], {}, { :class => "form-input"}) %>
                         </label>
                     </div>
-                  
                   
                     <div class="form-row">
                         <label>
                             <span>Disciplina</span>
-                            <%= select(:livro, :disciplina, @disciplinas, {}, { :class => "form-input"}) %>
+                            <%= select(:livro, :disciplina, grouped_options_for_select(@mapCategoria_Disciplina), {}, { :class => "form-input"}) %>
                         </label>
                     </div>
                     
                     <div class="form-row">
                         <label>
                             <span>Coleção</span>
-                            <%= select(:livro, :colecao, grouped_options_for_select(@mapDisciplinasColecoes), {},class:  'form-input')%>
+                            <%= select(:livro, :colecao, grouped_options_for_select(@mapCategoriaDisciplinas_Colecoes), {}, class:  'form-input')%>
                         </label>
                     </div>
                     
                     <div class="form-row">
                         <label>
                             <span>Obra</span>
-                            <%= select(:livro, :obra, grouped_options_for_select(@mapColecoesObras), {},class:  'form-input')%>
+                            <%= select(:livro, :obra, grouped_options_for_select(@mapCategoriaDisciplinasColecoes_Obras), {},class:  'form-input')%>
                         </label>
                     </div>
                     

@@ -40,7 +40,7 @@ namespace :import do
     contador = 0
     CSV.foreach(filename, encoding: "UTF-8",  headers: true, :row_sep => :auto, :quote_char => "<", :col_sep => "\t") do |row|
       row2=[]
-      for i in 0..8
+      for i in 0..9
         if row[i].to_s.encoding.to_s.eql? "US-ASCII"
           row2[i] = row[i].to_s.encode("US-ASCII").force_encoding("utf-8")
         else
@@ -49,7 +49,7 @@ namespace :import do
       end
       disciplina = row2[4].split.map(&:capitalize).join(' ')
       puts(disciplina)
-      livro = Livro.create!({isbn: row2[0], selo: row2[1], edicao: row2[2], volume_serie: row2[3], disciplina: disciplina, segmento: row2[5], colecao: row2[6], obra: row2[7], autor: row2[8]})
+      livro = Livro.create!({isbn: row2[0], selo: row2[1], edicao: row2[2], volume_serie: row2[3], disciplina: disciplina, segmento: row2[5], colecao: row2[6], obra: row2[7], autor: row2[8], categoria: row2[9]})
       puts "#{mec} - #{livro.errors.full_messages.join(",")}" if livro.errors.any?
       contador += 1 if livro.persisted?
       puts "#{contador}"

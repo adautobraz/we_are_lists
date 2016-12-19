@@ -4,10 +4,12 @@ class ListsController < ApplicationController
     def new
         @escola = Escola.find(params[:escola_id])
         @list = List.new
-        @ef1 = ["1º ano", "2º ano", "3º ano","4º ano", "5º ano"]
-        @ef2 = ["6º ano", "7º ano", "8º ano","9º ano"]
-        @em = ["1º ano", "2º ano", "3º ano"]
-        @ei = ["Pré 1", "Pré 2", "Pré3"]
+        @ef1 = ["1º Ano", "2º Ano", "3º Ano","4º Ano", "5º Ano"]
+        @ef2 = ["6º Ano", "7º Ano", "8º Ano","9º Ano"]
+        @em = ["1º Ano", "2º Ano", "3º Ano"]
+        @ei = ["Pré 1", "Pré 2", "Pré 3"]
+        @mapSegmento_Serie = { :"Ensino Fundamental 1" => @ef1, :"Ensino Fundamental 2" => @ef2, :"Ensino Médio" => @em, :"Educação Infantil" => @ei }
+
     end
     
     def create
@@ -78,11 +80,12 @@ class ListsController < ApplicationController
     def edit
         @list = List.find(params[:id])
         #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
-        @livros = Livro.where(segmento:[@list.segmento, 'Informativo Juvenil', 'Informativo Infantil', 'Literatura Infantil', 'Literatura Juvenil', 'Atlas/Dicionários'])
-        @disciplinas = @livros.order(:disciplina).uniq.pluck(:disciplina)
-        @colecoes = @livros.order(:colecao).uniq.pluck(:colecao)
-        @mapDisciplinasColecoes = Hash[@disciplinas.collect { |v| [v, @livros.where(disciplina: v).uniq.pluck(:colecao)]}]
-        @mapColecoesObras = Hash[@colecoes.collect { |v| [v, @livros.where(colecao: v).uniq.pluck(:obra)]}]
+        @livrosTodos = Livro.where(segmento:[@list.segmento, 'Informativo Juvenil', 'Informativo Infantil', 'Atlas/Dicionários', 'Literatura Infantil', 'Literatura Juvenil'])
+        @livros = @livrosTodos.where(volume_serie:[@list.serie, nil, 'VU'])
+        @categorias = @livros.order(:categoria).uniq.pluck(:categoria)
+        @mapCategoria_Disciplina = Hash[@categorias.collect { |v| [v, @livros.where(categoria: v).uniq.pluck(:disciplina)]}]
+        @mapCategoriaDisciplinas_Colecoes = Hash[@livros.collect { |v| [v.categoria + v.disciplina, @livros.where(categoria: v.categoria, disciplina: v.disciplina ).uniq.pluck(:colecao)]}]
+        @mapCategoriaDisciplinasColecoes_Obras = Hash[@livros.collect { |v| [v.categoria + v.disciplina + v.colecao, @livros.where(categoria: v.categoria, colecao: v.colecao, disciplina: v.disciplina ).uniq.pluck(:obra)]}]
         @livro = Livro.new
         
     end
@@ -95,5 +98,5 @@ class ListsController < ApplicationController
         def obra_data
             params.require(:livro).permit(:disciplina, :colecao, :obra, :isbn)
         end
-    
+        
 end

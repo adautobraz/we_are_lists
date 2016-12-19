@@ -26,7 +26,7 @@
                     <div class="form-row">
                         <label>
                             <span>Série</span>
-                            <%= f.text_field :serie, class:'form-input', placeholder: "Ex: 2º ano, Pré 1"  %>
+                            <%= f.select(:serie, grouped_options_for_select(@mapSegmento_Serie), {}, {class:'form-input'}) %>
                             <!--<input type="email" name="email">-->
                         </label>
                     </div>

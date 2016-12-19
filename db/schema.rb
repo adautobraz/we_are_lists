@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214115737) do
+ActiveRecord::Schema.define(version: 20161219113737) do
 
   create_table "escolas", force: :cascade do |t|
     t.integer "mec",       limit: 8
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20161214115737) do
     t.string  "segmento"
     t.integer "escola_id"
     t.string  "serie"
+    t.string  "observacoes"
   end
 
   create_table "livros", force: :cascade do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161214115737) do
     t.string  "obra"
     t.string  "autor"
     t.integer "list_id"
+    t.string  "categoria"
   end
 
 end
