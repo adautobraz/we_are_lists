@@ -36,7 +36,7 @@ class ListsController < ApplicationController
     def show
         @list = List.find(params[:id])
         @escola = @list.escola
-        #@disciplinas = Livro.where(:segmento => @list.segmento).uniq.pluck(:disciplina);
+        @categorias = @list.livros.map(&:categoria)
         #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
         respond_to do |format| 
             format.html
@@ -81,7 +81,7 @@ class ListsController < ApplicationController
         @list = List.find(params[:id])
         #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
         @livrosTodos = Livro.where(segmento:[@list.segmento, 'Informativo Juvenil', 'Informativo Infantil', 'Atlas/Dicionários', 'Literatura Infantil', 'Literatura Juvenil'])
-        @livros = @livrosTodos.where(volume_serie:[@list.serie, nil, 'VU'])
+        @livros = @livrosTodos.where(volume_serie: [@list.serie, "", 'VU'])
         @categorias = @livros.order(:categoria).uniq.pluck(:categoria)
         @mapCategoria_Disciplina = Hash[@categorias.collect { |v| [v, @livros.where(categoria: v).uniq.pluck(:disciplina)]}]
         @mapCategoriaDisciplinas_Colecoes = Hash[@livros.collect { |v| [v.categoria + v.disciplina, @livros.where(categoria: v.categoria, disciplina: v.disciplina ).uniq.pluck(:colecao)]}]

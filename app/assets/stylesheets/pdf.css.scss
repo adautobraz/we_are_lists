@@ -36,7 +36,6 @@ body {
 
 table {
   color: #333;
-  font-family: san-serif;
   font-size: 0.9em;
   font-weight: 300;
   text-align: left;
@@ -92,5 +91,12 @@ table tbody tr td.middle_row_center{
     border-bottom: 1px solid #fff;
     border-top: 1px solid #fff;
     text-align: center;
+
+}
+
+table tbody tr td.row_center{
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+    text-align: left;
 
 }
