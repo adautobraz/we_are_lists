@@ -36,8 +36,7 @@
                           <td class="middle_row"><%= "#{f.autor}".sub('"', '').split.map(&:capitalize)*' ' %></td>
                           <td class="middle_row">
                             <%= link_to "editar", edit_escola_list_livro_path(@escola, @list, f) %>
-                            <%= link_to "deletar", delete_livro_from_list_path(escola_id: @escola, list_id: @list, livro_id: f.id) %>   
-                            <i class="material-icons button delete"></i>
+                            <%= link_to "deletar", delete_livro_from_list_path(escola_id: @escola, list_id: @list, livro_id: f.id) %> 
                           </td>
                       </tr>
                       <tr>

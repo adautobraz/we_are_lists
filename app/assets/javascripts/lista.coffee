@@ -5,10 +5,10 @@
 jQuery ->
     ready = ->
 
-        $('#list_serie').parent().hide()
-        $('#livro_colecao').parent().hide()
-        $('#livro_obra').parent().hide()
-        $('#livro_disciplina').parent().hide()
+        #$('#list_serie').parent().hide()
+        #$('#livro_colecao').parent().hide()
+        #$('#livro_obra').parent().hide()
+        #$('#livro_disciplina').parent().hide()
     
         categorias = $('#livro_categoria').html()
         disciplinas = $('#livro_disciplina').html()
