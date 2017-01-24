@@ -1,6 +1,6 @@
-<div class="box">
+  <div class="box">
     <br><br>
-      <h1><%= "#{@list.escola.nome.split.map(&:capitalize)*' '.mb_chars.capitalize.to_s }"%></h1>
+      <h1><%= "#{@list.escola.nome.split.map(&:capitalize)*' '}"%></h1>
       <br>
       <h4><%= "#{@list.escola.endereco}" + " - " + "#{@list.escola.municipio}" + "/" "#{@list.escola.uf}" %></h4>
       <h4>
@@ -14,16 +14,15 @@
       <% end %>
       <br><br>
       <h3><%= "Lista de Livros - " + "#{@list.serie}" %></h3><br>
+      <% @espacos = 0 %>
+      <% @limite = 8 %>
   </div>
-  
-    <% @espacos = 0 %>
-    <% @limite = 8 %>
 
   <div class="container ">
     <div class="row row-centered">
       <div class="col-md-10 col-md-offset-4">
         
-          <% if @list.observacoes.present? %>
+        <% if @list.observacoes.present? %>
              <h4>Observações</h4><br>
              <% @observacoes = @list.observacoes.split("\n")%>
              <ul>
@@ -34,7 +33,7 @@
             <% @espacos = 1 + ((@observacoes.size - 1)/4.0).ceil %>
           <br>
         <% end %>
-
+        
         <% if @categorias.include?('Didático') %>
           <% @espacos += 1 %>
           <h4>Livros Didáticos</h4>
@@ -54,12 +53,12 @@
                       <% @espacos += 1 %>
                         <tr>
                             <td class="top_row"></td>
-                            <td class="top_row"><bold><%= "#{f.obra}".mb_chars.titleize.to_s  %></bold></td>
+                            <td class="top_row"><bold><%= "#{f.obra}".split.map(&:capitalize)*' ' %></bold></td>
                             <td class="top_row"></td>
                         </tr>
                         <tr>
-                            <td class="middle_row_center"><%= "#{f.disciplina}".mb_chars.titleize.to_s %></td>
-                            <td class="middle_row"><%= "#{f.autor}".sub('"', '').mb_chars.titleize.to_s %></td>
+                            <td class="middle_row_center"><%= "#{f.disciplina}".split.map(&:capitalize)*' ' %></td>
+                            <td class="middle_row"><%= "#{f.autor}".sub('"', '').split.map(&:capitalize)*' ' %></td>
                             <td class="middle_row"></td>
                         </tr>
                         <tr>
@@ -69,6 +68,9 @@
                         </tr>
                     </tbody>
                   <% end %>
+                <% else %>
+                  <br>
+                  <% @espacos = 0 %>
                 <% end %>
             <% end %>
           </table>
@@ -76,9 +78,6 @@
         <% @livros = @list.livros.slice(@count, @list.livros.size).clone %>
           
         <% if @livros.any?{|livro| livro.categoria=="Didático"} %>
-            <% @espacos = 0 %>
-            <% @limite = 10 %>
-            <br><br><br><br>
             <table class="text-center">
             <thead>
               <tr>
@@ -93,12 +92,12 @@
                   <% @espacos += 1 %>
                       <tr>
                           <td class="top_row"></td>
-                          <td class="top_row"><bold><%= "#{f.obra}".mb_chars.titleize.to_s %></bold></td>
+                          <td class="top_row"><bold><%= "#{f.obra}".split.map(&:capitalize)*' ' %></bold></td>
                           <td class="top_row"></td>
                       </tr>
                       <tr>
-                          <td class="middle_row_center"><%= "#{f.disciplina}".mb_chars.titleize.to_s %></td>
-                          <td class="middle_row"><%= "#{f.autor}".sub('"', '').mb_chars.titleize.to_s %></td>
+                          <td class="middle_row_center"><%= "#{f.disciplina}".split.map(&:capitalize)*' ' %></td>
+                          <td class="middle_row"><%= "#{f.autor}".sub('"', '').split.map(&:capitalize)*' ' %></td>
                           <td class="middle_row"></td>
                       </tr>
                       <tr>
@@ -111,19 +110,18 @@
             <% end %>
           </table>
         <% end %>
+        
       <% end %>
-      
-          
-      <% if @limite - @espacos < 3 %>  
-        <% while @espacos < @limite do %>
-          <br><br><br><br>
-          <% @espacos += 1 %>
+        
+        <% if @espacos >= @limite - 2 %>
+          <% while @espacos < @limite %>
+            <br><br><br>
+          <% end %>
+          <% @espacos = 0 %>
         <% end %>
-        <% @espacos = 0 %>
-      <% end %>
       
-    
-      <% if @categorias.include?('Paradidático') %>
+        
+        <% if @categorias.include?('Paradidático') %>
             <%# if @count < @limite - 2 %>
             <h4>Livros Paradidáticos</h4>
             <% @espacos += 1 %>
@@ -135,19 +133,19 @@
                 </tr>
               </thead>
               <% @livros.each do |f| %>
-                <% if f.categoria == 'Paradidático'%>
-                  <% if @espacos < @limite %>
+                <% if @espacos < @limite %>
+                  <% if f.categoria == 'Paradidático'%>
                     <tbody>
                          <% @count += 1 %>
                          <% @espacos += 1 %>
                           <tr>
                               <td class="top_row"></td>
-                              <td class="top_row"><bold><%= "#{f.obra}".mb_chars.titleize.to_s %></bold></td>
+                              <td class="top_row"><bold><%= "#{f.obra}".split.map(&:capitalize)*' ' %></bold></td>
                               <td class="top_row"></td>
                           </tr>
                           <tr>
-                              <td class="middle_row_center"><%= "#{f.disciplina}".mb_chars.titleize.to_s%></td>
-                              <td class="middle_row"><%= "#{f.autor}".sub('"', '').mb_chars.titleize.to_s %></td>
+                              <td class="middle_row_center"><%= "#{f.disciplina}".split.map(&:capitalize)*' ' %></td>
+                              <td class="middle_row"><%= "#{f.autor}".sub('"', '').split.map(&:capitalize)*' ' %></td>
                               <td class="middle_row"></td>
                           </tr>
                           <tr>
@@ -156,17 +154,17 @@
                               <td class="bottom_row"></td>
                           </tr>
                     </tbody>
-                  <% else %>
-                    <% @limite = 10 %>
                   <% end %>
-                <% end %>
+                <% else %>
+                   <br><br><br>
+                   <% @espacos = 0 %>
+              <% end %>
             <% end %>
             </table>
     
           <% @livros = @list.livros.slice(@count, @list.livros.size).clone %>
           
           <% if @livros.any?{|livro| livro.categoria=="Paradidático"} %>
-            <% @espacos = 0 %>
             <table class="text-center">
               <thead>
                 <tr>
@@ -180,12 +178,12 @@
                          <% @count += 1 %>
                           <tr>
                               <td class="top_row"></td>
-                              <td class="top_row"><bold><%= "#{f.obra}".mb_chars.titleize.to_s %></bold></td>
+                              <td class="top_row"><bold><%= "#{f.obra}".split.map(&:capitalize)*' ' %></bold></td>
                               <td class="top_row"></td>
                           </tr>
                           <tr>
-                              <td class="middle_row_center"><%= "#{f.disciplina}".mb_chars.titleize.to_s %></td>
-                              <td class="middle_row"><%= "#{f.autor}".sub('"', '').mb_chars.titleize.to_s %></td>
+                              <td class="middle_row_center"><%= "#{f.disciplina}".split.map(&:capitalize)*' ' %></td>
+                              <td class="middle_row"><%= "#{f.autor}".sub('"', '').split.map(&:capitalize)*' ' %></td>
                               <td class="middle_row"></td>
                           </tr>
                           <tr>

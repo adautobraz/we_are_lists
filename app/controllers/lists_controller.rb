@@ -38,6 +38,8 @@ class ListsController < ApplicationController
         @escola = @list.escola
         @categorias = @list.livros.map(&:categoria)
         #@disciplinas = Livro.where(:segmento => List.find(2).segmento).uniq.pluck(:disciplina)
+        @livros = @list.livros.clone
+        @count = 0
         respond_to do |format| 
             format.html
             format.pdf do
@@ -88,6 +90,19 @@ class ListsController < ApplicationController
         @mapCategoriaDisciplinasColecoes_Obras = Hash[@livros.collect { |v| [v.categoria + v.disciplina + v.colecao, @livros.where(categoria: v.categoria, colecao: v.colecao, disciplina: v.disciplina ).uniq.pluck(:obra)]}]
         @livro = Livro.new
         
+    end
+    
+    def obs
+        @list = List.find(params[:id])
+        @escola = Escola.find(@list.escola)
+    end
+    
+    def add
+        @list = List.find(params[:id])
+        @escola = Escola.find(@list.escola)
+        @list.observacoes = params[:observacoes]
+        @list.save
+        redirect_to escola_list_path(@escola, @list)
     end
 
     private

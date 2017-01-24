@@ -14,6 +14,17 @@
   <div class="container ">
     <div class="row row-centered">
       <div class="col-md-10 col-md-offset-1">
+        
+         <% if @list.observacoes.present? %>
+           <% @observacoes = @list.observacoes.split("\n")%>
+           <h1>Observações</h1><br>
+           <ul class="col-md-offset-2">
+             <% @observacoes.each do |f| %>
+               <li><%= f %></li>
+             <% end %>
+          </ul><br>
+        <% end %>
+        
         <% if @categorias.include?('Didático') %> 
           <h1>Livros Didáticos</h1>
           <table class="text-center">
@@ -87,12 +98,15 @@
           </table>
         <% end %>
       </div>
-          
+    
         <div class="form-group"> 
           <%= button_to 'Adicionar obra da Somos', edit_list_path, method: :get, class: ' btn btn-danger' %>
         </div>
         <div class="form-group"> 
           <%= button_to 'Adicionar outras obras', new_escola_list_livro_path(escola_id: @list.escola, list_id: @list), method: :get, class: ' btn btn-danger' %>
+        </div>
+        <div class="form-group"> 
+          <%= button_to 'Adicionar observações', add_obs_path, method: :get, class: ' btn btn-danger' %>
         </div>
         <div class="form-group">
           <%= button_to 'Exportar lista', escola_list_path(escola_id: @list.escola, list_id: @list, :format => :pdf), method: :get, class: ' btn btn-danger' %>

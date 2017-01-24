@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post 'escolas/fetch'
   post "lists/new"
   get  'escolas/:escola_id/lists/:id/delete' => 'lists#delete', as: :delete_livro_from_list
+  get  'escolas/:escola_id/lists/:id/add' => 'lists#obs', as: :add_obs
+  post  'escolas/:escola_id/lists/:id/obs' => 'lists#add', as: :save_obs
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
